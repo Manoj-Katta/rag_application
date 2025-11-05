@@ -30,8 +30,6 @@ const runIngestionPipeline = async () => {
         console.log(`\n2. Chunking ${rawText.length} characters across ${totalPages} pages...`);
         
         const chunksToEmbed = createChunks(rawText, fileName, totalPages);
-        console.log(`chunksToEmbed: ${chunksToEmbed}\n\n\n`);
-        console.log(`   -> Created ${chunksToEmbed.length} chunks.`);
 
         console.log("\n3. Generating embeddings and indexing chunks concurrently...");
 

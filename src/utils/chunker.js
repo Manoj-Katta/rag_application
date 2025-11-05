@@ -5,10 +5,8 @@ const createChunks = (rawText, fileName, totalPages) => {
     const chunks = [];
     let currentPosition = 0;
     let chunkId = 1;
-    console.log(`rawText: ${JSON.stringify(rawText)}\n\n\n`)
     
     const ESTIMATED_CHARS_PER_PAGE = rawText.length / totalPages;
-    console.log(`rawText length: ${JSON.stringify(rawText.length)}\n\n`);
     while (currentPosition < rawText.length) {
         const chunkStart = currentPosition;
         const chunkEnd = Math.min(currentPosition + CHUNK_SIZE, rawText.length);
@@ -32,7 +30,6 @@ const createChunks = (rawText, fileName, totalPages) => {
         chunkId++;
     }
 
-    console.log(`chunks: ${JSON.stringify(chunks)}\n\n\n`)
     return chunks;
 };
 
