@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Application </title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 20px; height: 20px; animation: spin 2s linear infinite; display: none; margin-left: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #answer { margin-top: 20px; padding: 15px; border-left: 5px solid #28a745; background-color: #e9fbe9; }
+    </style>
+</head>
+<body>
+    <h1>RAG System </h1>
+    
+    <div id="query-section">
+        <p>
+            <strong>Query:</strong> 
+            <input id="query-input" placeholder="e.g., What was Amazon's total revenue in 2023?" style="width: 500px;">
+            <button id="submit-button">Get Answer</button>
+            <div id="loader" class="loader"></div>
+        </p>
+    </div>
+
+    <h2>Final Answer</h2>
+    <p id="answer">Submit a query to see the generated response.</p>
+
+<script>
+    const API_URL = 'http://localhost:3000/answer'; 
+
+    document.getElementById('submit-button').addEventListener('click', handleQuery);
+    document.getElementById('query-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleQuery();
+    });
+
+    async function handleQuery() {
+        const query = document.getElementById('query-input').value.trim();
+        if (!query) return;
+
+        const submitButton = document.getElementById('submit-button');
+        const loader = document.getElementById('loader');
+        const answerDiv = document.getElementById('answer');
+
+        submitButton.disabled = true;
+        loader.style.display = 'inline-block';
+        answerDiv.innerHTML = "Processing query...";
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || data.error) {
+                answerDiv.innerHTML = `<span style="color: red;">Error: ${data.details || data.error || 'Server returned an unknown error.'}</span>`;
+                return;
+            }
+
+            answerDiv.innerHTML = data.answer;
+        } catch (error) {
+            answerDiv.innerHTML = `<span style="color: red;">Network Error: Could not connect to backend server at ${API_URL}.</span>`;
+            console.error("Fetch Error:", error);
+        } finally {
+            submitButton.disabled = false;
+            loader.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
