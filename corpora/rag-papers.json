@@ -1,0 +1,13 @@
+{
+  "name": "rag-papers",
+  "description": "research papers on retrieval-augmented generation",
+  "source": {
+    "type": "urls",
+    "urls": [
+      { "url": "https://arxiv.org/pdf/2005.11401", "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" },
+      { "url": "https://arxiv.org/pdf/2312.10997", "title": "Retrieval-Augmented Generation for Large Language Models: A Survey" },
+      { "url": "https://arxiv.org/pdf/2004.04906", "title": "Dense Passage Retrieval for Open-Domain Question Answering" }
+    ]
+  },
+  "attribution": "Papers © their authors, downloaded from arXiv at build time and not redistributed"
+}

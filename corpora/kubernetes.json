@@ -1,0 +1,15 @@
+{
+  "name": "kubernetes",
+  "description": "the Kubernetes documentation (kubernetes.io)",
+  "source": {
+    "type": "git",
+    "repo": "https://github.com/kubernetes/website.git",
+    "sparsePath": "content/en/docs"
+  },
+  "root": "content/en/docs",
+  "include": ["concepts", "tasks", "tutorials", "setup"],
+  "preprocess": ["hugo"],
+  "urlBase": "https://kubernetes.io/docs/",
+  "eval": "../eval/kubernetes.questions.json",
+  "attribution": "Documentation © The Kubernetes Authors, licensed under CC BY 4.0"
+}

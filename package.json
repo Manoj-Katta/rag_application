@@ -1,0 +1,33 @@
+{
+  "name": "rag_application",
+  "version": "1.0.0",
+  "description": "Config-driven RAG over Markdown, text and PDF documents: hybrid BM25 + vector retrieval, cited answers, and a retrieval eval harness",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "list": "node src/cli.js list",
+    "fetch": "node src/cli.js fetch",
+    "ingest": "node src/cli.js ingest",
+    "eval": "node src/cli.js eval",
+    "ask": "node src/cli.js ask",
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "@huggingface/transformers": "^4.3.0",
+    "dotenv": "^18.0.3",
+    "express": "^5.2.1",
+    "gray-matter": "^4.0.3",
+    "unpdf": "^1.8.1"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "rag": "src/cli.js"
+  }
+}
