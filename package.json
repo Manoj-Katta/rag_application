@@ -1,0 +1,24 @@
+{
+  "name": "rag_application",
+  "version": "1.0.0",
+  "description": "Retrieval-augmented Q&A over the Kubernetes docs, with hybrid BM25 + vector search and a retrieval eval harness",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "fetch-docs": "sh scripts/fetch-docs.sh",
+    "ingest": "node src/ingest.js",
+    "start": "node src/server.js",
+    "eval": "node eval/run.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "@huggingface/transformers": "^4.3.0",
+    "dotenv": "^18.0.3",
+    "express": "^5.2.1",
+    "gray-matter": "^4.0.3"
+  }
+}
